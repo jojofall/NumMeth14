@@ -1,3 +1,5 @@
+//GIVENS
+
 #include <iostream>
 #include <cmath>
 
