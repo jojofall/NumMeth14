@@ -98,6 +98,35 @@ int main(){
 
   //Berechnungen für Weyl
   //
+  double hP=0.0002;//Wert des Wirkungsquantums frei gewählt
+  theta=acos(1.-hP*omegaZero/(4*Pi*mass*gravity*length));
+  thetaDot=0.;
+  t=0.;
+  thetaVec.clear();
+  tVec.clear();
+  thetaDotVec.clear();
+
+  for(int i=0;i<runtime/h;i++){
+    k1=z2(t,theta,thetaDot,etha,omegaZero,f,Omega);
+    k2=z2(t+h/2,theta+h/2,thetaDot+h*k1/2,etha,omegaZero,f,Omega);
+    k3=z2(t+h/2,theta+h/2,thetaDot+h*k2/2,etha,omegaZero,f,Omega);
+    k4=z2(t+h,theta+h,thetaDot+h*k3,etha,omegaZero,f,Omega);
+    Phi=1./6*(k1+2*k2+2*k3+k4);
+    thetaDot=thetaDot+h*Phi;
+    thetaDotVec.push_back(thetaDot);
+    
+    k1=thetaDot;
+    k2=thetaDot+h*k1/2;
+    k3=thetaDot+h*k2/2;
+    k4=thetaDot+h*k3;
+    
+    Phi=1./6*(k1+2*k2+2*k3+k4);
+    theta=theta+h*Phi;
+    t=t+h;
+    thetaVec.push_back(theta);
+    tVec.push_back(t);
+  }
+
 
   vector<double>::iterator thetaDotIt=thetaDotVec.begin();
   thetaIt=thetaVec.begin();
@@ -127,8 +156,7 @@ int main(){
   thetaDotIt--;
   phaseSpace=phaseSpace*mass*length*length;
   
-  double hP=0.0002;//Wert des Wirkungsquantums frei gewählt
-  theta=acos(1.-hP*omegaZero/(4*Pi*mass*gravity*length));
+  
   
   cout << "Theta(t=0) für Grundzustand: " << theta << endl;
   cout << "qMax: " << thetaMax*length << endl;
