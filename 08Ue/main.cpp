@@ -86,7 +86,7 @@ int main(){
 		thetaIt--;
 		tIt--;
 		FT=FT-cos(om*(*tIt))*(*thetaIt);
-		FT=h*FT/(2*3.1415);
+		FT=h*FT/(2*Pi);
 		fourierVec.push_back(FT*FT);
 		outFourier<<om<<" "<<FT<<" "<<FT*FT<<endl;
 	}
@@ -101,13 +101,31 @@ int main(){
 
   vector<double>::iterator thetaDotIt=thetaDotVec.begin();
   thetaIt=thetaVec.begin();
-  double thetaMax=0.,thetaDotMax=0.;
+  double thetaMax=0.,thetaDotMax=0.,period=0.,phaseSpace=0.,thetaLast,thetaDotLast;
   while(thetaIt!=thetaVec.end()){
     if((*thetaIt)>thetaMax)thetaMax=(*thetaIt);
     if((*thetaDotIt)>thetaDotMax)thetaDotMax=(*thetaDotIt);
     thetaIt++;
     thetaDotIt++;
   }
+  period=2*Pi/omegaZero;
+
+  tIt=tVec.begin();
+  thetaDotIt=thetaDotVec.begin();
+  thetaIt=thetaVec.begin();
+  thetaLast=(*thetaIt);
+  thetaDotLast=(*thetaDotIt);
+  tIt++;
+  while((*tIt)<period){
+    thetaDotIt++;
+    thetaIt++;
+    phaseSpace=phaseSpace+(thetaDotLast+(*thetaDotIt))*((*thetaIt)-thetaLast)/2.;
+    thetaLast=(*thetaIt);
+    thetaDotLast=(*thetaDotIt);
+    tIt++;
+  }
+  thetaDotIt--;
+  phaseSpace=phaseSpace*mass*length*length;
   
   double hP=0.0002;//Wert des Wirkungsquantums frei gewählt
   theta=acos(1.-hP*omegaZero/(4*Pi*mass*gravity*length));
@@ -115,7 +133,9 @@ int main(){
   cout << "Theta(t=0) für Grundzustand: " << theta << endl;
   cout << "qMax: " << thetaMax*length << endl;
   cout << "pMax: " << thetaDotMax*length*mass << endl;
-  cout << "Phasenraumvolumen (pMax*qMax*Pi): " << thetaMax*thetaDotMax*Pi*mass*length*length << endl << "Zum Vergleich, h/2 in unserem Fall: " << hP/2. << endl;
+  cout << "Phasenraumvolumen (pMax*qMax*Pi): " << thetaMax*thetaDotMax*Pi*mass*length*length << endl;
+  cout << "Phasenraumvolumen integriert: " << phaseSpace << endl;
+  cout << "Zum Vergleich, h/2 in unserem Fall: " << hP/2. << endl;
   
   cout<<"Beendet. Daten liegen in 'Ausgaben.dat' & 'Fourier.dat'"<<endl;
        	int i;
