@@ -119,6 +119,6 @@ int main(){
   
   cout<<"Beendet. Daten liegen in 'Ausgaben.dat' & 'Fourier.dat'"<<endl;
        	int i;
-	cin>>i;
+	cin>>i; //damit gnuplots nicht gleich wieder geschlossen werden
 	return 0;
 }
