@@ -1,0 +1,55 @@
+02.06.2014	Übung 11		Gruppe 05
+
+Johannes Herbst
+Daniel Spitzbart
+
+est. time: ~6 hours
+
+created files:
+
+	text:
+		ising.cpp		-> compiled to ./ising
+		Wert.dat		-> this file contains all the calculated values
+					in the following order: Temperature, average magnetisation (mav),
+	 				standard deviation (std) mav, mav^2, std mav^2, mav^4, 
+					std mav^4, average energy (eav), std eav, binder cumulant, std binder cumulante.
+
+	plots:				-> in ./pdfs
+		name[.pdf]		description	system size 
+		m_05			-> mav(T)	5x5
+		m_10			-> mav(T)	10x10
+		m_20			-> mav(T)	20x20
+		stdm_5			-> stdmav(T)	5x5
+		stdm_10			-> stdmav(T)	10x10
+		stdm_20			-> stdmav(T)	20x20
+		m2_05			-> mav^2(T)	5x5
+		m2_10			-> mav^2(T)	10x10
+		m2_20			-> mav^2(T)	20x20
+		stdm2_05		-> stdmav^2(T)	5x5
+		stdm2_10		-> stdmav^2(T)	10x10
+		stdm2_20		-> stdmav^2(T)	20x20
+		m4_05			-> mav^4(T)	5x5
+		m4_10			-> mav^4(T)	10x10
+		m4_20			-> mav^4(T)	20x20
+		stdm4_05		-> stdmav^4(T)	5x5
+		stdm4_10		-> stdmav^4(T)	10x10
+		stdm4_20		-> stdmav^4(T)	20x20
+		e_05			-> eav(T)	5x5
+		e_10			-> eav(T)	10x10
+		e_20			-> eav(T)	20x20
+		stde_05			-> stdeav(T)	5x5
+		stde_10			-> stdeav(T)	10x10
+		stde_20			-> stdeav(T)	20x20
+		b_05			-> binder(T)	5x5
+		b_10			-> binder(T)	10x10
+		b_20			-> binder(T)	20x20
+		stdb_05			-> stdbinder(T)	5x5
+		stdb_10			-> stdbinder(T)	10x10
+		stdb_20			-> stdbinder(T)	20x20
+
+
+Results: With bigger system size the chance of finding a local extremum increases, therefore the magnetisation is not always 1 below TC. Estimated value for TC=2.37 (see TC.pdf - system size 50x50, red vertical line - TC (2.269), green line - steepest descent of mav(T) -> estimated TC~2.37)
+
+Number of warm-up sweeps: 1000
+Number of run sweeps: 10000
+
