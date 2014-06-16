@@ -6,7 +6,7 @@
 using namespace std;
 
 double vPot(double x,double vZero,double rZero,double aZero,double vOne,double rOne,double aOne) {
-	double vPott;  	
+	double vPott;
 	vPott=-vZero/(1.+exp((x-rZero)/aZero));
   	vPott=vPott+vOne*exp(-pow((x-rOne),2)/aOne);
 	return vPott;
@@ -25,11 +25,11 @@ int main(){
 	double v0,r0,A,a,v1,r1,a1,pi,mRed,mn=939.56563,mA,amu=931.49432,mhb2,hbarc=197.327053,dr,Rmax,Nr,rr;
 	int l,Nrmax=2000,NEmax=2000;
 
-	fstream in,outPot,outU;	
-	in.open("Werte.dat",std::fstream::in);	
+	fstream in,outPot,outU;
+	in.open("Werte.dat",std::fstream::in);
 	in>>v0>>rr>>A>>a>>v1>>r1>>a1>>l>>dr>>Rmax>>mA;
 	in.close();
-	
+
 	pi=2.*asin(1.);
 
  	mRed=mn*mA*amu/(mA*amu+mn);
@@ -55,42 +55,42 @@ int main(){
   stepsize=1.;
 	while (sqrt(upast*upast)>0.000001){
 		norm=0.;
-		z.push_back((2.*exp(-sqrt(mhb2*-E))*(Rmax))/((1+(pow(dr,2)/12.)*wr(Rmax,E,l,vnew,mhb2))));
+		z.push_back((2.*exp(-sqrt(mhb2*-E))*(Rmax))/((1+(pow(dr,2)/12.)*wr(Rmax,E,l,vnew,mhb2)))); //Startvalues (arbitrary)
 		u.push_back(2.*exp(-sqrt(mhb2*-E))*(Rmax));
 		z.push_back((2.*exp(-sqrt(mhb2*(-E))*(Rmax-dr)))/(1+(pow(dr,2)/12.)*wr(Rmax-dr,E,l,vnew,mhb2)));
 		u.push_back(2.*exp(-sqrt(mhb2*-E))*(Rmax-dr));
-		norm=(u[0]+u[1])*dr/2.;
-		
-	
+		norm=pow((u[0]+u[1]),2)*dr/2.;
+
+
 		for(int i=1;i<=mxf;i++){
 			vnew=vPot(Rmax-i*dr,v0,r0,a,v1,r1,a1);
 			znew=2*z[i]-z[i-1]-pow(dr,2)*wr(Rmax-i*dr,E,l,vnew,mhb2)*z[i];
 			ud=(1+(pow(dr,2)/12.)*wr(Rmax-i*dr,E,l,vnew,mhb2))*znew;
-			z.push_back(znew);		
+			z.push_back(znew);
 			u.push_back(ud);
-			norm=norm+(u[i]+u[i-1])*dr/2.;
+			norm+=pow((u[i]+u[i-1]),2)*dr/2.;
 
 		}
-		norm=sqrt(norm*norm);
+		norm=sqrt(norm);
 
 		for(int i=0;i<=mxf;i++){
 			u[i]=-u[i]/norm;
 		}
-    
-    
+
+
     //Alternativer Algorithmus zur Nullstellensuche (Sekantenverfahren), konvergiert aber bei l=1 nicht daher ->
     //x=-u[mxf]*dr/(u[mxf-1]-u[mxf]);
     //if(x*x>xpast*xpast&&f>0){
     //  stepsize=-stepsize/3.;
     //}
     //xpast=x;
-		
+
     //Dieser Algorithmus
     if(u[mxf]*u[mxf]>upast*upast&&f>hitter){
       stepsize=-stepsize/3.;
     }
     upast=u[mxf];
-    
+
 		cout << ".";
     //cout << f << " " << E << " " << u[mxf] << endl;
 		f++;
