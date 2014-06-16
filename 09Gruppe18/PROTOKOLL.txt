@@ -1,0 +1,11 @@
+Übung: 9
+Datum:13.5.2014
+Gr.Nr.: 18
+Namen: Blaha Martin, Berlakovich Nikolaus
+
+Zeitaufwand: 4,5h
+
+Programme:
+
+	intro.f95
+Siehe Plots der Phasenverschiebung und Absoluten Phase für V=0 und V=10 MEV

@@ -1,0 +1,9 @@
+40         ! mass number of target
+39.962591  ! relative atomic mass of target
+1          ! orbital angular momentum quantum number
+1.d0       ! start normalisation of wave function
+1000.d0 0.1d0 ! start energy, energy step in MeV
+20.d0 2000  ! maximum radius in fm, number of radial mesh points
+20.d0 1.20d0 0.6d0  ! V0,rr,a0 potential parameters
+10.d0 6.00d0 4.0d0  ! V1,R1,a1 Gauss potential paramters
+

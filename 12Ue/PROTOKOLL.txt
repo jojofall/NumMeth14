@@ -1,0 +1,43 @@
+10.06.2014	Übung 12		Gruppe 05
+
+Johannes Herbst
+Daniel Spitzbart
+
+est. time: ~6 hours
+
+created files:
+
+	text:
+		segmentation.cpp	-> compiled to ./seg
+		classification.dat	-> contains the classification data
+		saSweep.dat		-> contains the simulated annealing Data
+		
+
+		Error after classification: 15.6464%
+		
+		Simulated annealing with 1000 sweeps per temp
+			Starting temp: 1
+			End temp: 0.5
+			Stepsize: 1.1
+			Error after SA: 1.87865%
+			Tissue #1: 0.609954%
+			Tissue #2: 1.8432%
+			Tissue #3: 3.17357%
+			Tissue #4: 1.46183%
+			Tissue #5: 3.15717%
+			
+		Simulated annealing with 1000 sweeps per temp
+			Starting temp: 0.8
+			End temp: 0.5
+			Stepsize: 1.1
+			Error after SA: 1.81835%
+			Tissue #1: 0.645643%
+			Tissue #2: 1.85811%
+			Tissue #3: 2.90869%
+			Tissue #4: 1.46183%
+			Tissue #5: 3.05422%
+
+
+
+	plots:		new.ps		-> image after simulated annealing
+			start.ps 	-> image after classification
