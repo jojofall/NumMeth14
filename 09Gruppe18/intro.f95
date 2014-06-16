@@ -2,7 +2,7 @@
   double precision :: V0,R0,a0
   double precision :: V1,R1,a1
   end module
-  
+
   program levinson
 
   use potpar
@@ -67,6 +67,7 @@ k=sqrt(ie*de*mhb2)
   if(ie .lt. 1998) then
   if(delta(ie+1)-delta(ie) .gt. 0.75*(4.*datan(1.d0))) then
   j=j+1
+  write(*,*) "Phasensprung"
   end if
   end if
 write(*,*) ie*de,delta(ie)+j*4.*atan(1.d0)
@@ -84,7 +85,7 @@ end
   implicit none
   double precision :: x,E,mhb2,vpot
   integer*4 :: l
-  
+
   Vpot=-V0/(1.d0+exp((x-R0)/a0))
   Vpot=Vpot+V1*exp(-(x-R1)**2/a1)
 
@@ -96,8 +97,8 @@ end
 !-------------------------------------------------------------------------------------
   subroutine bessel(x,l,bes,neu)
 !
-! evaluates the Bessel and Neumann functions in 
-! Riccati form for given l at the argument x 
+! evaluates the Bessel and Neumann functions in
+! Riccati form for given l at the argument x
 !   j0=sin(x),n0=cos(x)
 !
   implicit none
@@ -120,7 +121,7 @@ end
   if(l.eq.2) then
     bes=sin(x)*(3/x**2-1.d0)-3.d0*cos(x)/x
     neu=cos(x)*(3/x**2-1.d0)+3.d0*sin(x)/x
-  end if 
+  end if
 !
   return
   end
@@ -139,4 +140,3 @@ end
   Vpot=Vpot+V1*exp(-(x-R1)**2/a1)
   return
   end
-
