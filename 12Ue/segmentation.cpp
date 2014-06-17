@@ -10,6 +10,7 @@
 #include <fstream>
 #include <vector>
 #include <cmath>
+#include <ctime>
 
 #define RangeX 254
 #define RangeY 333
@@ -160,6 +161,7 @@ int main(){
 
   fstream image,correct,out2;
 
+  srand48(time(NULL));
   if(readfile("SimMRimage.dat", grey)==0)return 0;
   if(readfile("CorrectSegImage.dat", cor)==0)return 0;
 
@@ -175,10 +177,10 @@ int main(){
   cout << "Error after SA: " << calcError(tis,cor,error)*100 << "%" << endl;
   for (int i=0; i<5;i++)cout << "Tissue #" << i+1 << ": "<< error[i]*100 << "%" << endl;
 
-  SA(0.8,0.5,1.1,tis,grey,type,std); // re-heating and cooling
-
-  cout << "Error after SA: " << calcError(tis,cor,error)*100 << "%" << endl;
-  for (int i=0; i<5;i++)cout << "Tissue #" << i+1 << ": "<< error[i]*100 << "%" << endl;
+  // SA(0.8,0.5,1.1,tis,grey,type,std); // re-heating and cooling
+  //
+  // cout << "Error after SA: " << calcError(tis,cor,error)*100 << "%" << endl;
+  // for (int i=0; i<5;i++)cout << "Tissue #" << i+1 << ": "<< error[i]*100 << "%" << endl;
 
   out2.open("saSweep.dat",std::ios::out);
   for(int i=0;i<RangeX;i++){
