@@ -84,7 +84,7 @@ void seg(int tis[RangeX][RangeY], int grey[RangeX][RangeY], int type[5], int std
 }
 
 void SA(double Tbegin, double Tfinal, double lambda, int tissue[RangeX][RangeY], int grey[RangeX][RangeY], int type[5], int std[5]){
-  int sweeps=1000;
+  int sweeps=100;
   int Inew, Jnew,rand1,rand2,rand3,temp;
   int Inn[4] = {1,-1,0,0};       /* Nearest neighbor array I */
   int Jnn[4] = {0,0,1,-1};       /* Nearest neighbor array J */
